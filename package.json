@@ -1,19 +1,70 @@
 {
-  "name": "chat-client",
-  "version": "1.0.0",
-  "description": "A chat client",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/alevor657/chat-client.git"
-  },
-  "author": "Alexey V",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alevor657/chat-client/issues"
-  },
-  "homepage": "https://github.com/alevor657/chat-client#readme"
+    "name": "chat-client",
+    "version": "1.0.0",
+    "description": "A chat client",
+    "main": "src/server.js",
+    "scripts": {
+        "webpack": "webpack",
+        "start": "node src/server.js",
+        "test": "npm run eslint && npm run stylelint && npm run jest",
+        "stylelint": "stylelint \"**/*.scss\"",
+        "eslint": "eslint .; exit 0",
+        "jest": "jest --coverage",
+        "coverage": "open('coverage/lcov-report/index.html')",
+        "node_latest": "docker-compose up node_latest",
+        "node_8": "docker-compose up node8",
+        "test_latest": "docker-compose run node_latest npm test",
+        "test_8": "docker-compose run node8 npm test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/alevor657/chat-client.git"
+    },
+    "author": "Alexey V",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/alevor657/chat-client/issues"
+    },
+    "homepage": "https://github.com/alevor657/chat-client#readme",
+    "devDependencies": {
+        "@babel/core": "^7.0.0-beta.34",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.34",
+        "@babel/preset-env": "^7.0.0-beta.34",
+        "@babel/preset-react": "^7.0.0-beta.34",
+        "babel-cli": "^6.26.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-jest": "^21.2.0",
+        "babel-loader": "^8.0.0-beta.0",
+        "css-loader": "^0.28.7",
+        "enzyme": "^3.2.0",
+        "enzyme-adapter-react-16": "^1.1.0",
+        "eslint": "^4.13.1",
+        "eslint-plugin-jest": "^21.4.2",
+        "eslint-plugin-react": "^7.5.1",
+        "file-loader": "^1.1.5",
+        "jest": "^21.2.1",
+        "node-sass": "^4.7.2",
+        "normalize.css": "^7.0.0",
+        "open": "0.0.5",
+        "react-test-renderer": "^16.2.0",
+        "sass-loader": "^6.0.6",
+        "semantic-ui-css": "^2.2.12",
+        "semantic-ui-react": "^0.77.1",
+        "style-loader": "^0.19.0",
+        "stylelint": "^8.3.1",
+        "stylelint-scss": "^2.2.0",
+        "supertest": "^3.0.0",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "axios": "^0.17.1",
+        "express": "^4.16.2",
+        "prop-types": "^15.6.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-redux": "^5.0.6",
+        "react-router-dom": "^4.2.2",
+        "redux": "^3.7.2",
+        "socket.io-client": "^2.0.4"
+    }
 }

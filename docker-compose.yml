@@ -1,0 +1,49 @@
+version: "3"
+services:
+    node_latest:
+        container_name: node_latest
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-node-latest
+        volumes:
+            - ./:/app/
+            - /app/node_modules
+
+        environment:
+          - DBWEBB_PORT=8090
+          - DBWEBB_DSN=mongodb://mongodb:27017/users
+        ports:
+            - "8090:8090"
+        command:
+            "npm start"
+        links:
+            - mongodb
+
+    node8:
+        container_name: node8
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-node-8-alpine
+        volumes:
+            - ./:/app/
+            - /app/node_modules
+
+        environment:
+          - DBWEBB_PORT=8088
+          - DBWEBB_DSN=mongodb://mongodb:27017/users
+
+        ports:
+            - "8088:8088"
+        command: "npm start"
+        links:
+            - mongodb
+
+    mongodb:
+            image: mongo
+            environment:
+                - MONGO_DATA_DIR=/data/db
+            volumes:
+                - ./data/db:/data/db
+            ports:
+                - 27017:27017
+            command: mongod --bind_ip_all
