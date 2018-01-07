@@ -4,7 +4,7 @@
     "description": "A chat client",
     "main": "src/server.js",
     "scripts": {
-        "webpack": "webpack",
+        "webpack": "webpack --watch",
         "start": "node src/server.js",
         "test": "npm run eslint && npm run stylelint && npm run jest",
         "stylelint": "stylelint \"**/*.scss\"",
@@ -47,6 +47,7 @@
         "normalize.css": "^7.0.0",
         "open": "0.0.5",
         "react-test-renderer": "^16.2.0",
+        "redux-immutable-state-invariant": "^2.1.0",
         "sass-loader": "^6.0.6",
         "semantic-ui-css": "^2.2.12",
         "semantic-ui-react": "^0.77.1",
@@ -65,6 +66,7 @@
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
         "redux": "^3.7.2",
+        "redux-thunk": "^2.2.0",
         "socket.io-client": "^2.0.4"
     }
 }
