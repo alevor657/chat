@@ -27,3 +27,31 @@ export function login(formData) {
         });
     };
 }
+
+export function registerSuccess(token) {
+    return {
+        type: types.REGISTER_SUCCESS,
+        payload: token
+    };
+}
+
+export function registerFailure() {
+    return {
+        type: types.REGISTER_FAILURE,
+        payload: false
+    };
+}
+
+export function register(formData) {
+    return function(dispatch) {
+        return axios.post(`${API_URL}/user/signup`, formData).then(function(res) {
+            console.log(res);
+            let { token } = res.data;
+
+            dispatch(loginSuccess(token));
+        }).catch((err) => {
+            console.log(err);
+            dispatch(loginFailure());
+        });
+    };
+}

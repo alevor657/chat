@@ -12,6 +12,7 @@ import {
     Segment
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import toastr from 'toastr';
 
 import * as userActions from '../actions/userActions';
 
@@ -29,8 +30,9 @@ class RegisterForm extends Component {
         return {
             email: '',
             username: '',
-            password: ''
-        }
+            password: '',
+            loading: false
+        };
     }
 
     handleChange(e, { name, value }) {
@@ -40,13 +42,25 @@ class RegisterForm extends Component {
     }
 
     async handleRegisterClick() {
+        this.setState({
+            loading: true
+        });
+
+        let { username, password, email } = this.state;
+
+        await this.props.actions.register({username, password, email});
+
+        if (this.props.user.token) {
+            this.props.history.push('/');
+            return;
+        }
+
         this.setState(this.getInitialState);
-
-
+        toastr.error('User may already exist or bad credentials provided', 'Something went wrong');
     }
 
     render() {
-        let { email, username, password } = this.state;
+        let { email, username, password, loading } = this.state;
 
         return (
             <div className='login-form'>
@@ -59,7 +73,7 @@ class RegisterForm extends Component {
                         <Header as='h2' color='teal' textAlign='center'>
                             Sign-up
                         </Header>
-                        <Form size='large'>
+                        <Form size='large' loading={loading}>
                             <Segment stacked>
                                 <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail' onChange={this.handleChange} required value={email} name="email"/>
                                 <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' onChange={this.handleChange} required value={username} name="username"/>

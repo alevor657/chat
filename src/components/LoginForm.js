@@ -12,6 +12,7 @@ import {
     Segment
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import toastr from 'toastr';
 
 import * as userActions from '../actions/userActions';
 
@@ -49,6 +50,7 @@ class LoginForm extends Component {
 
         if (this.props.user.token) {
             this.props.history.push('/');
+            return;
         }
 
         this.setState({
@@ -56,6 +58,8 @@ class LoginForm extends Component {
             password: '',
             loading: false
         });
+
+        toastr.error('Bad username or password', 'Something went wrong');
     }
 
     render() {

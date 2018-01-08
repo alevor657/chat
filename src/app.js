@@ -1,6 +1,7 @@
 
 // Styles
 import 'normalize.css';
+import 'toastr/build/toastr.min.css';
 import 'semantic-ui-css/semantic.min.css';
 import './scss/main.scss';
 
