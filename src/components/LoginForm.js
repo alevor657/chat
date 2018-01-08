@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {PropTypes} from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -11,6 +11,8 @@ import {
     Message,
     Segment
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 import * as userActions from '../actions/userActions';
 
 class LoginForm extends Component {
@@ -19,7 +21,8 @@ class LoginForm extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            loading: false
         };
 
         this.handleLoginClick = this.handleLoginClick.bind(this);
@@ -35,8 +38,24 @@ class LoginForm extends Component {
         this.setState({password: e.target.value});
     }
 
-    handleLoginClick() {
-        this.props.actions.login(Object.assign({}, {...this.state}));
+    async handleLoginClick() {
+        this.setState({
+            loading: true
+        });
+
+        let { username, password } = this.state;
+
+        await this.props.actions.login(Object.assign({}, {username, password}));
+
+        if (this.props.user.token) {
+            this.props.history.push('/');
+        }
+
+        this.setState({
+            username: '',
+            password: '',
+            loading: false
+        });
     }
 
     render() {
@@ -51,17 +70,17 @@ class LoginForm extends Component {
                         <Header as='h2' color='teal' textAlign='center'>
                             Log-in to your account
                         </Header>
-                        <Form size='large'>
+                        <Form size='large' loading={this.state.loading}>
                             <Segment stacked>
-                                <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' onChange={this.handleUsernameInput} required/>
-                                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' onChange={this.handlePasswordInput} required/>
+                                <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' onChange={this.handleUsernameInput} required value={this.state.username}/>
+                                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' onChange={this.handlePasswordInput} required value={this.state.password}/>
 
                                 <Button color='teal' fluid size='large' onClick={this.handleLoginClick}>Login</Button>
                             </Segment>
                         </Form>
                         <Message>
                             Or{' '}
-                            <a href='#'>Sign Up</a>
+                            <Link to="/register">Sign-Up</Link>
                         </Message>
                     </Grid.Column>
                 </Grid>
@@ -71,7 +90,9 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    user: PropTypes.object,
+    history: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
