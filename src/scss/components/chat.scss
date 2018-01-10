@@ -1,0 +1,42 @@
+.chat {
+    padding: 0;
+    height: 100vh;
+
+    .chat-window {
+        height: calc(100vh - 56px);
+    }
+
+    .column {
+        padding: 1em;
+    }
+
+    .chat-window {
+        .event {
+            padding: 0.5em 0.3em;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            transition: background .1s ease,box-shadow .1s ease,color .1s ease;
+
+            &:hover {
+                background-color: #D4D4D5;
+                box-shadow: 0 0 1px 1px darken(#D4D4D5, 40%);
+                cursor: pointer;
+            }
+
+            &:first-child, &:last-child {
+                padding: 0.5em 0.3em;
+            }
+        }
+
+        .comments {
+            max-width: 100%;
+            min-height: 90%;
+            overflow-y: scroll;
+
+            .form {
+                background-color: transparent;
+            }
+        }
+    }
+}

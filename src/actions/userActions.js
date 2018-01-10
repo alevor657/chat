@@ -19,9 +19,7 @@ export function loginFailure() {
 export function login(formData) {
     return function(dispatch) {
         return axios.post(`${API_URL}/user/signin`, formData).then(function(res) {
-            let { token } = res.data;
-
-            dispatch(loginSuccess(token));
+            dispatch(loginSuccess(res.data));
         }).catch(() => {
             dispatch(loginFailure());
         });
@@ -45,13 +43,15 @@ export function registerFailure() {
 export function register(formData) {
     return function(dispatch) {
         return axios.post(`${API_URL}/user/signup`, formData).then(function(res) {
-            console.log(res);
-            let { token } = res.data;
-
-            dispatch(loginSuccess(token));
-        }).catch((err) => {
-            console.log(err);
+            dispatch(loginSuccess(res.data));
+        }).catch(() => {
             dispatch(loginFailure());
         });
+    };
+}
+
+export function logout() {
+    return {
+        type: types.LOGOUT
     };
 }

@@ -1,3 +1,13 @@
+body {
+    min-height: 100vh;
+}
+
 #root {
-    height: inherit;
+    height: 100%;
+}
+
+.menu {
+    .right.menu {
+        cursor: pointer;
+    }
 }
