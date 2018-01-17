@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
 import * as userActions from '../actions/userActions';
+import { API_URL } from '../constants';
 
 import Menu from './Menu';
 
@@ -33,7 +34,8 @@ class Chat extends Component {
 
         let { username, email } = this.props.user;
 
-        this.socket = io('http://127.0.0.1:1338');
+        console.log(API_URL);
+        this.socket = io(API_URL);
         this.socket.emit('new user', {username, email});
         this.socket.on('update usernames', this.updateUsers);
         this.socket.on('message', this.renderMessage);
