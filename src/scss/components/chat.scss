@@ -16,15 +16,16 @@
             justify-content: center;
             align-content: center;
             align-items: center;
-            transition: background .1s ease,box-shadow .1s ease,color .1s ease;
+            transition: background 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
 
             &:hover {
-                background-color: #D4D4D5;
-                box-shadow: 0 0 1px 1px darken(#D4D4D5, 40%);
+                background-color: #d4d4d5;
+                box-shadow: 0 0 1px 1px darken(#d4d4d5, 40%);
                 cursor: pointer;
             }
 
-            &:first-child, &:last-child {
+            &:first-child,
+            &:last-child {
                 padding: 0.5em 0.3em;
             }
         }

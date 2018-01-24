@@ -8,6 +8,7 @@ import './scss/main.scss';
 import 'babel-polyfill';
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -35,6 +36,10 @@ class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    user: PropTypes.object
+};
 
 function mapStateToProps(state, ownProps) {
     return {

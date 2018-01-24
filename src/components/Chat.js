@@ -16,7 +16,7 @@ function getGravatar(email) {
     return `https://www.gravatar.com/avatar/${md5(email)}`;
 }
 
-class Chat extends Component {
+export class Chat extends Component {
     constructor(props) {
         super(props);
 
@@ -34,7 +34,6 @@ class Chat extends Component {
 
         let { username, email } = this.props.user;
 
-        console.log(API_URL);
         this.socket = io(API_URL);
         this.socket.emit('new user', {username, email});
         this.socket.on('update usernames', this.updateUsers);

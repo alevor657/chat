@@ -16,7 +16,7 @@ import toastr from 'toastr';
 
 import * as userActions from '../actions/userActions';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
     constructor(props) {
         super(props);
 
