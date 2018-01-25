@@ -9,9 +9,9 @@ build:
 
 filter:
     excluded_paths:
-        - "__tests__"
-        - "__mocks__"
-        - "coverage"
-        - "dist"
-        - "docker"
-        - "node_modules"
+        - "__tests__/*"
+        - "__mocks__/*"
+        - "coverage/*"
+        - "dist/*"
+        - "docker/*"
+        - "node_modules/*"
