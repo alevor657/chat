@@ -64,7 +64,7 @@ I use webpack to minify all code. Minified version of the program is availiabe i
 
 ### Installation
 ---
-You can play with the application directly over [here](http://80.78.218.152:1345), or install it locally. Do not forget to modify the API_URL constant as described in foreword if you want to use locally installed server. By default the applciation will connect to the server running on my rpi.
+You can play with the application directly over [here](http://80.78.218.120:1345), or install it locally. Do not forget to modify the API_URL constant as described in foreword if you want to use locally installed server. By default the applciation will connect to the server running on my rpi.
 
 In order to install the application do:
 
